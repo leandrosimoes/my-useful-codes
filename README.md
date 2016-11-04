@@ -3,7 +3,7 @@ Just a repo to store some codes that (somehow) are useful to me.
 
 ## Many languages but organized:
 
-[C#](https://github.com/leandrosimoes/my-useful-codes/tree/master/LANGUAGES/CSHARP)
+[C#](https://github.com/leandrosimoes/my-useful-codes/tree/master/LANGUAGES/CSHARP/codes.md)
 
 [VB.NET](https://github.com/leandrosimoes/my-useful-codes/tree/master/LANGUAGES/VBNET/codes.md)
 
