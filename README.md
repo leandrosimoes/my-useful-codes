@@ -13,5 +13,7 @@ Just a repo to store some codes that (somehow) are useful to me.
 
 [JS](https://github.com/leandrosimoes/my-useful-codes/blob/master/JS/codes.md)
 
+[GIT](https://github.com/leandrosimoes/my-useful-codes/blob/master/GIT/codes.md)
+
 ## Sugestions, fixes or improvements?
 Just open a pull request or mail me: [leandro.simoes@outlook.com](mailto:leandro.simoes@outlook.com)
