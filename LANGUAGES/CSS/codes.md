@@ -1,7 +1,7 @@
 ﻿# **CSS**
 Some CSS useful codes:
 
-### Align verticaly with pure CSS
+### Align vertically with pure CSS
 ```CSS
 /* This parent code is just to avoid elements to be blurry due to the element being placed on a “half pixel”. */
 .parent-element {
