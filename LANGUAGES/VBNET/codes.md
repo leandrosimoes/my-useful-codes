@@ -118,3 +118,34 @@ $.ajax({
 ```
 
 ----------
+
+### DataTable to Class
+##### I have used this method to parse a DataTable to any Class type. The Class must have the property names equals to the table columns names.
+
+```VB
+Public Shared Function DataTableToClass(Of T)(ByVal dt As DataTable, ByVal obj As T) As IEnumerable(Of T)
+    Dim objRetun As New List(Of T)()
+
+    If (IsNothing(dt.Rows) OrElse dt.Rows.Count <= 0) Then
+        Return Nothing
+    End If
+
+    Dim propInfo() As PropertyInfo = obj.GetType().GetProperties()
+    For Each row As DataRow In dt.Rows
+        For Each col As DataColumn In dt.Columns
+            Dim colName As String = col.ColumnName
+            Dim prop As PropertyInfo = propInfo.FirstOrDefault(Function(p) p.Name = colName)
+
+            If (Not IsNothing(prop)) Then
+                obj.GetType().GetProperty(colName).SetValue(obj, row(colName))
+            End If
+        Next
+
+        objRetun.Add(obj)
+    Next
+
+    Return objRetun.AsEnumerable()
+End Function
+```
+
+----------
