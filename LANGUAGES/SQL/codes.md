@@ -65,3 +65,5 @@ set @Result = @Result  + '
 
 print @Result
 ```
+
+### References: [#1](http://stackoverflow.com/a/5873231/1988289)
