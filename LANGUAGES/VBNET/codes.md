@@ -152,3 +152,155 @@ End Function
 ```
 
 ----------
+
+### Validate CPF
+##### Used to validate CPF (CPF is a personal ID in Brazil).
+
+```VB
+Public Shared Function ValidaCPF(ByVal CPF As String) As Boolean
+    Dim blackList() As String = {"00.000.000-00", "111.111.111-11", "222.222.222-22", "333.333.333-33", "444.444.444-44", "555.555.555-55", "666.666.666-66", "777.777.777-77", "888.888.888-88", "999.999.999-99"}
+    Dim i, x, n1, n2 As Integer
+
+    CPF = CPF.Trim
+    For i = 0 To blackList.Length - 1
+        If CPF.Length <> 14 Or blackList(i).Equals(CPF) Then
+            Return False
+        End If
+    Next
+
+    CPF = CPF.Substring(0, 3) + CPF.Substring(4, 3) + CPF.Substring(8, 3) + CPF.Substring(12)
+    For x = 0 To 1
+        n1 = 0
+        For i = 0 To 8 + x
+            n1 = n1 + Val(CPF.Substring(i, 1)) * (10 + x - i)
+        Next
+        n2 = 11 - (n1 - (Int(n1 / 11) * 11))
+        If n2 = 10 Or n2 = 11 Then n2 = 0
+
+        If n2 <> Val(CPF.Substring(9 + x, 1)) Then
+            Return False
+        End If
+    Next
+
+    Return True
+End Function
+```
+
+----------
+
+
+### Validate CNPJ
+##### Used to validate CNPJ (CNPJ is a company ID in Brazil).
+
+```VB
+Public Shared Function ValidaCNPJ(ByVal CNPJ As String) As Boolean
+    Dim blackList() As String = {"00.000.000/0000-00", "11.111.111/1111-11", "22.222.222/2222-22", "33.333.333/3333-33", "44.444.444/4444-44", "55.555.555/5555-55", "66.666.666/6666-66", "77.777.777/7777-77", "88.888.888/8888-88", "99.999.999/9999-99"}
+
+    Dim i As Integer
+    Dim valida As Boolean
+    CNPJ = CNPJ.Trim
+
+    For i = 0 To blackList.Length - 1
+        If CNPJ.Length <> 18 Or blackList(i).Equals(CNPJ) Then
+            Return False
+        End If
+    Next
+
+    CNPJ = CNPJ.Substring(0, 2) + CNPJ.Substring(3, 3) + CNPJ.Substring(7, 3) + CNPJ.Substring(11, 4) + CNPJ.Substring(16)
+    valida = Validate(CNPJ)
+
+    If valida Then
+        ValidaCNPJ = True
+    Else
+        ValidaCNPJ = False
+    End If
+
+End Function
+
+Private Shared Function Validate(ByVal cnpj As String)
+    Dim Numero(13) As Integer
+    Dim soma As Integer
+    Dim i As Integer
+    Dim valida As Boolean
+    Dim resultado1 As Integer
+    Dim resultado2 As Integer
+    For i = 0 To Numero.Length - 1
+        Numero(i) = CInt(cnpj.Substring(i, 1))
+    Next
+    soma = Numero(0) * 5 + Numero(1) * 4 + Numero(2) * 3 + Numero(3) * 2 + Numero(4) * 9 + Numero(5) * 8 + Numero(6) * 7 +
+               Numero(7) * 6 + Numero(8) * 5 + Numero(9) * 4 + Numero(10) * 3 + Numero(11) * 2
+    soma = soma - (11 * (Int(soma / 11)))
+
+    resultado1 = If(soma = 0 Or soma = 1, 0, 11 - soma)
+
+    If resultado1 = Numero(12) Then
+        soma = Numero(0) * 6 + Numero(1) * 5 + Numero(2) * 4 + Numero(3) * 3 + Numero(4) * 2 + Numero(5) * 9 + Numero(6) * 8 +
+                     Numero(7) * 7 + Numero(8) * 6 + Numero(9) * 5 + Numero(10) * 4 + Numero(11) * 3 + Numero(12) * 2
+        soma = soma - (11 * (Int(soma / 11)))
+        If soma = 0 Or soma = 1 Then
+            resultado2 = 0
+        Else
+            resultado2 = 11 - soma
+        End If
+        If resultado2 = Numero(13) Then
+            Return True
+        Else
+            Return False
+        End If
+    Else
+        Return False
+    End If
+
+End Function
+```
+
+----------
+
+### Return ModelStateDictionary Errors to
+##### Used to validate CPF (CPF is a personal ID in Brazil).
+
+```VB
+'This is my model that I use to return success or errors
+Public Class BaseReturnModel
+    Public Property id As Integer
+
+    Public Property success As Boolean
+        Get
+            Return IsNothing(errors) OrElse Not errors.Any()
+        End Get
+        Set(value As Boolean)
+        End Set
+    End Property
+
+    Public Property errors As New List(Of BaseErrorModel)()
+End Class
+
+'This function get all ModelStateDictionary errors and put them on my BaseReturnModel
+Public Shared Function GetModelErrors(modelState As ModelStateDictionary) As BaseReturnModel
+    Dim retorno As New BaseReturnModel()
+
+    For Each ms As ModelState In modelState.Values
+        For Each modelError As ModelError In ms.Errors
+            retorno.errors.Add(New BaseErrorModel With {
+                .Message = modelError.ErrorMessage
+            })
+        Next
+    Next
+
+    Return retorno
+End Function
+
+'Then I use like this
+Public Function MyAction() As ActionResult
+    Dim ret As New JsonNetResult
+    ret.ContentType = "application/json; charset=utf-8"
+    ret.JsonRequestBehavior = JsonRequestBehavior.AllowGet
+
+    If (Not ModelState.IsValid) Then
+        ret.Data = GetModelErrors(ModelState)
+        Return retorno
+    End If
+End Function
+```
+
+----------
