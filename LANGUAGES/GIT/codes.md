@@ -20,3 +20,12 @@ git fsck --full
 
 ##### References: [#1](http://stackoverflow.com/questions/23725925/git-repository-corrupt-incorrect-header-check-loose-object-is-corrupt)
 ----------
+
+### Configure GIT proxy
+```GIT
+git config --global https.proxy https://USER:PWD@proxy.whatever:80
+git config --global http.proxy http://USER:PWD@proxy.whatever:80
+```
+
+##### References: [#1](http://stackoverflow.com/a/15647280/1988289)
+----------
