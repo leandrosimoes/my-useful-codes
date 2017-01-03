@@ -91,3 +91,70 @@ function getYoutubeThumbnail(url, index) {
 
 ----------
 
+### Create a BLOB from base64 string
+
+```javascript
+function b64toBlob(b64Data, contentType, sliceSize) {
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
+
+    var byteCharacters = atob(b64Data);
+    var byteArrays = [];
+
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+        var byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        var byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+    }
+
+    var blob = new Blob(byteArrays, { type: contentType });
+    return blob;
+}
+```
+
+----------
+
+### Create thumbnail BLOB from HTML5 `<video>` tag
+
+```javascript
+function createVideoThumb() {
+    try {
+        var canvas = document.createElement('canvas'),
+            video = $('video')[0],
+            $video = $(video),
+            w = $video.width(),
+            h = $video.height();
+
+        canvas.width = w;
+        canvas.height = h;
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+        canvas.style.position = "absolute";
+        canvas.style.display = 'none';
+        canvas.id = 'temp-canvas';
+
+        var body = document.getElementsByTagName("body")[0];
+        body.appendChild(canvas);
+
+        canvas.getContext('2d').drawImage(video, 0, 0, w, h);
+
+        canvas.toBlob(function (blob) {
+            $(canvas).remove();
+            
+            return blob;
+        }, "image/jpeg", 1);
+    } catch (e) {
+        console.log('Error!.')
+    }
+}
+```
+
+----------
+
