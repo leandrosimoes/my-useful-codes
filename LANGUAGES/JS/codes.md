@@ -58,3 +58,35 @@ orderArray(arrayToBeOrdered, [], 'name'); // [{ name: 'A' }, { name: 'B' }, { na
 ```
 
 ----------
+
+### Get video ID and thumbnail from Youtube url
+
+```javascript
+function getYoutubeVideoID(url) {
+    if (!url || url.indexOf('yout') === -1) return null;
+
+    var videoId = url.split('v=')[1];
+    var ampersandPosition = videoId.indexOf('&');
+    if (ampersandPosition != -1) {
+        videoId = videoId.substring(0, ampersandPosition);
+    }
+
+    return videoId;
+}
+
+//Return the url of youtube video thumbnail
+function getYoutubeThumbnail(url, index) {
+    if (!url || url.indexOf('yout') === -1) return null;
+    
+    index = parseInt(index) || 0; //You can pass the index of thumbnail if you know
+
+    var videoId = getYoutubeVideoID(url); //Here I'm using the function that I show bellow
+
+    if (videoId.length !== 11) return null;
+    
+    return 'https://img.youtube.com/vi/' + videoId + '/' + thumbnailIndex + '.jpg';
+}
+```
+
+----------
+
