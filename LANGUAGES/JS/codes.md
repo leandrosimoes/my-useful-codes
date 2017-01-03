@@ -62,6 +62,7 @@ orderArray(arrayToBeOrdered, [], 'name'); // [{ name: 'A' }, { name: 'B' }, { na
 ### Get video ID and thumbnail from Youtube url
 
 ```javascript
+//Return the youtube video ID
 function getYoutubeVideoID(url) {
     if (!url || url.indexOf('yout') === -1) return null;
 
