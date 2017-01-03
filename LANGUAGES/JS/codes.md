@@ -121,7 +121,7 @@ function b64toBlob(b64Data, contentType, sliceSize) {
 
 ----------
 
-### Create thumbnail BLOB from HTML5 `<video>` tag
+### Create thumbnail BLOB from HTML5 `<video>` tag (Needs JQuery)
 
 ```javascript
 function createVideoThumb() {
@@ -158,3 +158,141 @@ function createVideoThumb() {
 
 ----------
 
+### String format like .NET String.Format
+
+```javascript
+function stringFormat(args) {
+    var str = this;
+
+    if (!str || !args || typeof str != 'string') return str;
+
+    for (var i = 0; i < args.length; i++) {
+        str = str.replace('{' + i + '}', args[i]);
+    }
+
+    return str;
+};
+```
+
+Than you can add to string prototype like this:
+
+```javascript
+String.prototype.stringFormat = stringFormat;
+```
+
+And use like this:
+
+```javascript
+'my {0} to {1}'.format(['string', 'format']); //my string to format
+```
+
+----------
+
+### JSON object to URI encoded params
+
+```javascript
+function jsonToURI(obj) {
+    return Object.keys(obj).map(function (key) {
+        return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
+    }).join('&');
+}
+```
+
+### Vanilla function to extend objects
+
+```javascript
+function extend() {
+    var extended = {};
+    var deep = false;
+    var i = 0;
+    var length = arguments.length;
+
+    // Check if a deep merge
+    if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
+        deep = arguments[0];
+        i++;
+    }
+
+    // Merge the object into the extended object
+    var merge = function (obj) {
+        for (var prop in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+                // If deep merge and property is an object, merge properties
+                if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
+                    extended[prop] = extend(true, extended[prop], obj[prop]);
+                } else {
+                    extended[prop] = obj[prop];
+                }
+            }
+        }
+    };
+
+    // Loop through each object and conduct a merge
+    for (; i < length; i++) {
+        var obj = arguments[i];
+        merge(obj);
+    }
+
+    return extended;
+
+}
+```
+
+-----------
+
+### Parsing HTML string with pure vanilla JS
+
+```javascript
+function parseHtml(html) {
+    var wrapMap = {
+        option: [1, "<select multiple='multiple'>", "</select>"],
+        legend: [1, "<fieldset>", "</fieldset>"],
+        area: [1, "<map>", "</map>"],
+        param: [1, "<object>", "</object>"],
+        thead: [1, "<table>", "</table>"],
+        tr: [2, "<table><tbody>", "</tbody></table>"],
+        col: [2, "<table><tbody></tbody><colgroup>", "</colgroup></table>"],
+        td: [3, "<table><tbody><tr>", "</tr></tbody></table>"],
+        body: [0, "", ""],
+        _default: [1, "<div>", "</div>"]
+    };
+    wrapMap.optgroup = wrapMap.option;
+    wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
+    wrapMap.th = wrapMap.td;
+var match = /<\s*\w.*?>/g.exec(html);
+    var element = document.createElement('div');
+    if (match != null) {
+        var tag = match[0].replace(/</g, '').replace(/>/g, '').split(' ')[0];
+        if (tag.toLowerCase() === 'body') {
+            var dom = document.implementation.createDocument('http://www.w3.org/1999/xhtml', 'html', null);
+            var body = document.createElement("body");
+            // keeping the attributes
+            element.innerHTML = html.replace(/<body/g, '<div').replace(/<\/body>/g, '</div>');
+            var attrs = element.firstChild.attributes;
+            body.innerHTML = html;
+            for (var i = 0; i < attrs.length; i++) {
+                body.setAttribute(attrs[i].name, attrs[i].value);
+                }
+                return body;
+            } else {
+                var map = wrapMap[tag] || wrapMap._default, element;
+                html = map[1] + html + map[2];
+                element.innerHTML = html;
+                // Descend through wrappers to the right content
+                var j = map[0] + 1;
+                while (j--) {
+                    element = element.lastChild;
+                }
+            }
+        } else {
+            element.innerHTML = html;
+            element = element.lastChild;
+        }
+        
+    return element;
+}
+```
+
+### References: [#1](http://krasimirtsonev.com/blog/article/Revealing-the-magic-how-to-properly-convert-HTML-string-to-a-DOM-element)
+
+-----------
