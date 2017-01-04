@@ -296,3 +296,22 @@ var match = /<\s*\w.*?>/g.exec(html);
 ### References: [#1](http://krasimirtsonev.com/blog/article/Revealing-the-magic-how-to-properly-convert-HTML-string-to-a-DOM-element)
 
 -----------
+
+### Copy to clipboard (Needs JQuery)
+
+```javascript
+function copyToClipboard(contentToCopy) {
+    if(!document.execCommand) throw 'Your browser do not support this feature.'; //Feature detection
+    
+    $(document).append('<textarea class="cliparea"></textarea>');
+    
+    var $cliparea = $('.cliparea');
+    $cliparea.val(contentToCopy || '');
+    $cliparea.focus();
+    $cliparea.select();
+
+    document.execCommand('Copy');
+
+    $cliparea.remove();
+}
+```
