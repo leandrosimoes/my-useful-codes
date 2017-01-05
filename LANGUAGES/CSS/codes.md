@@ -2,6 +2,8 @@
 Some CSS useful codes:
 
 ### Align vertically with pure CSS
+##### Align the element verically at the middle of container
+
 ```CSS
 /* This parent code is just to avoid elements to be blurry due to the element being placed on a “half pixel”. */
 .parent-element {
