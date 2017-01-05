@@ -2,6 +2,7 @@
 Some GIT useful codes:
 
 ### Fix untracked files
+##### Sometimes you put some things on .gitignore but you realise that git do not ignore them, so this fix it.
 ```GIT
 git rm -r --cached .
 git add .
@@ -12,7 +13,7 @@ git commit -m "fixed untracked files"
 ----------
 
 ### Fix corrupted header
-#### error: unable to unpack XXX header
+#### I used this code to fix this error: unable to unpack XXX header
 ```GIT
 rm -f PATH_TO_HEADER_FILE
 git fsck --full
@@ -22,6 +23,7 @@ git fsck --full
 ----------
 
 ### Configure GIT proxy
+##### Set up the proxy for GIT
 ```GIT
 git config --global https.proxy https://USER:PWD@proxy.whatever:80
 git config --global http.proxy http://USER:PWD@proxy.whatever:80
