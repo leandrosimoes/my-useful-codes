@@ -2,6 +2,7 @@
 Some JS useful codes:
 
 ### Order an array of objects by another array of values and property name
+##### I used this code when I needed to order an array passing another array with the same properties but in some order
 
 ```javascript
 function orderArray(arr, order, propName) {
@@ -60,7 +61,7 @@ orderArray(arrayToBeOrdered, [], 'name'); // [{ name: 'A' }, { name: 'B' }, { na
 ----------
 
 ### Get video ID and thumbnail from Youtube url
-
+##### This code I use to get the youtube thumbnail url passing the video url
 ```javascript
 //Return the youtube video ID
 function getYoutubeVideoID(url) {
@@ -92,7 +93,7 @@ function getYoutubeThumbnail(url, index) {
 ----------
 
 ### Create a BLOB from base64 string
-
+##### Used to create a Blob object passing a base64 string
 ```javascript
 function b64toBlob(b64Data, contentType, sliceSize) {
     contentType = contentType || '';
@@ -122,7 +123,7 @@ function b64toBlob(b64Data, contentType, sliceSize) {
 ----------
 
 ### Create thumbnail BLOB from HTML5 `<video>` tag (Needs JQuery)
-
+##### Create a Blob object with a thumnail image of a html5 `video` tag
 ```javascript
 function createVideoThumb() {
     try {
@@ -159,7 +160,7 @@ function createVideoThumb() {
 ----------
 
 ### String format like .NET String.Format
-
+##### I used this string.format a lot on .NET code, so I just create the same for javascript
 ```javascript
 function stringFormat(args) {
     var str = this;
@@ -189,7 +190,7 @@ And use like this:
 ----------
 
 ### JSON object to URI encoded params
-
+##### Encode a json object properties to be passed in url
 ```javascript
 function jsonToURI(obj) {
     return Object.keys(obj).map(function (key) {
@@ -199,7 +200,7 @@ function jsonToURI(obj) {
 ```
 
 ### Vanilla function to extend objects
-
+##### This function merges objects like $.extends of JQuery
 ```javascript
 function extend() {
     var extended = {};
@@ -241,7 +242,7 @@ function extend() {
 -----------
 
 ### Parsing HTML string with pure vanilla JS
-
+##### This is a vanilla html parser that can be used with multiline html string
 ```javascript
 function parseHtml(html) {
     var wrapMap = {
@@ -298,7 +299,7 @@ var match = /<\s*\w.*?>/g.exec(html);
 -----------
 
 ### Copy to clipboard (Needs JQuery)
-
+##### Yeah, now we can copy to clipboard again using execCommand
 ```javascript
 function copyToClipboard(contentToCopy) {
     if(!document.execCommand) throw 'Your browser do not support this feature.'; //Feature detection
