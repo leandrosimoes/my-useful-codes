@@ -303,7 +303,7 @@ var match = /<\s*\w.*?>/g.exec(html);
 function copyToClipboard(contentToCopy) {
     if(!document.execCommand) throw 'Your browser do not support this feature.'; //Feature detection
     
-    $(document).append('<textarea class="cliparea"></textarea>');
+    $('body').append('<textarea class="cliparea"></textarea>');
     
     var $cliparea = $('.cliparea');
     $cliparea.val(contentToCopy || '');
