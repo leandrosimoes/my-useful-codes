@@ -60,12 +60,31 @@ orderArray(arrayToBeOrdered, [], 'name'); // [{ name: 'A' }, { name: 'B' }, { na
 
 ----------
 
+### Verify youtube URL
+##### Verify if the url is a valid youtube URL
+
+```javascript
+function isYouTubeUrl(url) {
+    if (!url) return false;
+
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    if (match && match[2].length == 11) {
+        return true;
+    } else {
+        return false;
+    }
+}
+```
+
+----------
+
 ### Get video ID and thumbnail from Youtube url
 ##### This code I use to get the youtube thumbnail url passing the video url
 ```javascript
 //Return the youtube video ID
 function getYoutubeVideoID(url) {
-    if (!url || url.indexOf('yout') === -1) return null;
+    if (!isYouTubeUrl(url)) return null; //I'm using the code that I presented bellow
 
     var videoId = url.split('v=')[1];
     var ampersandPosition = videoId.indexOf('&');
@@ -78,7 +97,7 @@ function getYoutubeVideoID(url) {
 
 //Return the url of youtube video thumbnail
 function getYoutubeThumbnail(url, index) {
-    if (!url || url.indexOf('yout') === -1) return null;
+    if (!isYouTubeUrl(url)) return null; //I'm using the code that I presented bellow
     
     index = parseInt(index) || 0; //You can pass the index of thumbnail if you know
 
