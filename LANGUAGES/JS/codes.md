@@ -79,10 +79,9 @@ function isYouTubeUrl(url) {
 
 ----------
 
-### Get video ID and thumbnail from Youtube url
-##### This code I use to get the youtube thumbnail url passing the video url
+### Get youtube video ID
+##### This code I use to get the youtube video ID passing the video url
 ```javascript
-//Return the youtube video ID
 function getYoutubeVideoID(url) {
     if (!isYouTubeUrl(url)) return null; //I'm using the code that I presented bellow
 
@@ -94,18 +93,47 @@ function getYoutubeVideoID(url) {
 
     return videoId;
 }
+```
 
-//Return the url of youtube video thumbnail
+----------
+
+### Get Youtube video thumbnail
+##### This code I use to get the Youtube video thumbnail passing the video url
+```javascript
 function getYoutubeThumbnail(url, index) {
     if (!isYouTubeUrl(url)) return null; //I'm using the code that I presented bellow
     
     index = parseInt(index) || 0; //You can pass the index of thumbnail if you know
 
-    var videoId = getYoutubeVideoID(url); //Here I'm using the function that I show bellow
+    var videoId = getYoutubeVideoID(url); //I'm using the code that I presented bellow
 
     if (videoId.length !== 11) return null;
     
     return 'https://img.youtube.com/vi/' + videoId + '/' + thumbnailIndex + '.jpg';
+}
+```
+
+----------
+
+### Append Youtube `<iframe>`
+##### Append and Youtube embedded iframe on page
+
+```javascript
+function appendYoutubeVideo(src, width, height, locationId) {
+	if(!isYoutubeUrl(src)) throw 'src is required'; //I'm using the code that I presented bellow
+    
+    var videoId = getYoutubeVideoID(src), //I'm using the code that I presented bellow
+        newSrc = 'https://www.youtube.com/embed/' + videoId,
+        location = document.getElementById(locationId) || document.body;
+	
+	var iframe = document.createElement('iframe');
+	iframe.id = 'yt-iframe-' + new Date().getTime();
+	iframe.width = width || 560;
+	iframe.height = height || 349;
+	iframe.src = newSrc;
+    iframe.frameBorder = 0;
+	
+	location.appendChild(iframe);
 }
 ```
 
