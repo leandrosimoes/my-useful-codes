@@ -60,8 +60,8 @@ orderArray(arrayToBeOrdered, [], 'name'); // [{ name: 'A' }, { name: 'B' }, { na
 
 ----------
 
-### Verify youtube URL
-##### Verify if the url is a valid youtube URL
+### Verify Youtube URL
+##### Verify if the url is a valid Youtube URL
 
 ```javascript
 function isYouTubeUrl(url) {
@@ -79,8 +79,8 @@ function isYouTubeUrl(url) {
 
 ----------
 
-### Get youtube video ID
-##### This code I use to get the youtube video ID passing the video url
+### Get Youtube video ID
+##### This code I use to get the Youtube video ID passing the video url
 ```javascript
 function getYoutubeVideoID(url) {
     if (!isYouTubeUrl(url)) return null; //I'm using the code that I presented bellow
@@ -134,6 +134,111 @@ function appendYoutubeVideo(src, width, height, locationId) {
     iframe.frameBorder = 0;
 	
 	location.appendChild(iframe);
+}
+```
+
+----------
+
+### Verify Vimeo URL
+##### Verify if the url is a valid Vimeo URL
+
+```javascript
+function isVimeoUrl(url) {
+    if(!url) return false;
+
+    return /^(http\:\/\/|https\:\/\/)?(www\.)?(vimeo\.com\/)([0-9]+)$/.test(url);
+}
+```
+
+----------
+
+### Get Vimeo video ID
+##### This code I use to get the Vimeo video ID passing the video url
+```javascript
+function getVimeoVideoId(url) {
+    if (!isVimeoUrl(url)) return null;
+
+    return url.match(/\d{9}/);
+}
+```
+
+----------
+
+### Get Vimeo video data
+##### This code I use to get the Vimeo video data (like thumbnails url, author, etc) passing the video url
+```javascript
+function vimeoLoadingData(url) {
+    if(!isVimeoUrl(url)) return null;
+
+    var videoId = getVimeoVideoId(url),
+        url = "http://vimeo.com/api/v2/video/" + videoId + ".json";
+        
+    $.ajax({
+        type:'GET',
+        url: url,
+        dataType: 'json',
+        success: function(data) {
+            if(!!data && data.length > 0) {
+                return data[0];
+            } else {
+                return null;
+            }
+        }
+    });
+}
+```
+
+### Sample Data:
+```json
+{
+    "id":999999999,
+    "title":"Video Title",
+    "description":"Video Description",
+    "url":"https://vimeo.com/999999999",
+    "upload_date":"2016-12-25 16:30:55",
+    "thumbnail_small":"https://i.vimeocdn.com/video/999999999_100x75.jpg",
+    "thumbnail_medium":"https://i.vimeocdn.com/video/999999999_200x150.jpg",
+    "thumbnail_large":"https://i.vimeocdn.com/video/999999999_640.jpg",
+    "user_id":2417485,"user_name":"John Doo","user_url":"https://vimeo.com/johndoo",
+    "user_portrait_small":"https://i.vimeocdn.com/portrait/9999999_30x30",
+    "user_portrait_medium":"https://i.vimeocdn.com/portrait/9999999_75x75",
+    "user_portrait_large":"https://i.vimeocdn.com/portrait/9999999_100x100",
+    "user_portrait_huge":"https://i.vimeocdn.com/portrait/9999999_300x300",
+    "stats_number_of_likes":629,
+    "stats_number_of_plays":76849,
+    "stats_number_of_comments":60,
+    "duration":254,
+    "width":1920,
+    "height":1080,
+    "tags":"Tag1, Tag2, TagN",
+    "embed_privacy":"anywhere"
+}
+```
+
+----------
+
+### Append Vimeo `<iframe>`
+##### Append and Vimeo embedded iframe on page
+
+```javascript
+function appendVimeoVideo(src, width, height, locationId) {
+    if(!isVimeoUrl(src)) throw 'src is required';
+
+    var videoId = getVimeoVideoId(src),
+        newSrc = 'https://player.vimeo.com/video/' + videoId + '?color=ffffff',
+        location = document.getElementById(locationId) || document.body;
+      
+    var iframe = document.createElement('iframe');
+    iframe.id = 'yt-iframe-' + new Date().getTime();
+    iframe.width = width || 640;
+    iframe.height = height || 360;
+    iframe.src = newSrc;
+    iframe.frameBorder = 0;
+	iframe.webkitallowfullscreen = true;
+	iframe.mozallowfullscreen = true; 
+    iframe.allowfullscreen = true;
+
+    location.appendChild(iframe);
 }
 ```
 
