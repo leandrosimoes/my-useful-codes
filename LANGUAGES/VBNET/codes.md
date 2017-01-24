@@ -4,7 +4,7 @@ Some VB.NET useful codes:
 ### HttpListener sample
 ##### I have used this code to start a localhost server listener to be able to open a desktop application by browser
 
-```VB
+```VBNET
 Imports System.IO
 Imports System.Net
 Imports System.Text
@@ -122,7 +122,7 @@ $.ajax({
 ### DataTable to Class
 ##### I have used this method to parse a DataTable to any Class type. The Class must have the property names equals to the table columns names.
 
-```VB
+```VBNET
 Public Shared Function DataTableToClass(Of T)(ByVal dt As DataTable) As IEnumerable(Of T)
     Dim objType As Type = GetType(T)
     Dim objRetun As New List(Of T)()
@@ -156,7 +156,7 @@ End Function
 ### Validate CPF
 ##### Used to validate CPF (CPF is a personal ID in Brazil).
 
-```VB
+```VBNET
 Public Shared Function ValidaCPF(ByVal CPF As String) As Boolean
     Dim blackList() As String = {"00.000.000-00", "111.111.111-11", "222.222.222-22", "333.333.333-33", "444.444.444-44", "555.555.555-55", "666.666.666-66", "777.777.777-77", "888.888.888-88", "999.999.999-99"}
     Dim i, x, n1, n2 As Integer
@@ -192,7 +192,7 @@ End Function
 ### Validate CNPJ
 ##### Used to validate CNPJ (CNPJ is a company ID in Brazil).
 
-```VB
+```VBNET
 Public Shared Function ValidaCNPJ(ByVal CNPJ As String) As Boolean
     Dim blackList() As String = {"00.000.000/0000-00", "11.111.111/1111-11", "22.222.222/2222-22", "33.333.333/3333-33", "44.444.444/4444-44", "55.555.555/5555-55", "66.666.666/6666-66", "77.777.777/7777-77", "88.888.888/8888-88", "99.999.999/9999-99"}
 
@@ -259,7 +259,7 @@ End Function
 ### Return ModelStateDictionary Errors to
 ##### Used to validate CPF (CPF is a personal ID in Brazil).
 
-```VB
+```VBNET
 'This is my model that I use to return success or errors
 Public Class BaseReturnModel
     Public Property id As Integer
@@ -300,6 +300,23 @@ Public Function MyAction() As ActionResult
         ret.Data = GetModelErrors(ModelState)
         Return retorno
     End If
+End Function
+```
+
+----------
+
+### NameValueCollection to query string
+##### Transform a NameValueCollection into a encoded query string
+
+```VBNET
+Public Function ToQueryString(ByVal parameters As NameValueCollection) As String
+    Dim items = New List(Of String)()
+
+    For Each name As String In parameters
+        items.Add(String.Concat(name, "=", Web.HttpUtility.UrlEncode(parameters(name))))
+    Next
+
+    Return String.Join("&amp;", items.ToArray())
 End Function
 ```
 
