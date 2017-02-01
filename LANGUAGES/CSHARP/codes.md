@@ -481,7 +481,7 @@ private Icon PegarIconeBrowserPadrao(string progId) {
 ##### With this code you can verify if an URL is valid 
 
 ```CSHARP
-public bool VerifyUrl(string url, ref string returnProtocol) {
+public bool VerifyUrl(string url, ref string returnProtocol) {    
     var protocols = new[] { "http://", "https://", "http://www.", "https://www." };
 
     foreach (var protocol in protocols) {
@@ -502,5 +502,112 @@ public bool VerifyUrl(string url, ref string returnProtocol) {
     }
 
     return false;
+}
+```
+
+
+--------
+
+### Send Push Notifications By Google Firebase
+##### I Use this code to send push notifications by Google Firebase to my mobile apps
+
+```CSHARP
+public class PushNotificationModel {
+	public PushNotificationModel(string title, string message = "", string icon = "", string action = "", string tag = "", string color = "", string sound = "") {
+		this.Title = title;
+		this.Message = message;
+		this.Icon = icon;
+		this.Action = action;
+		this.Tag = tag;
+		this.Color = color;
+		this.Sound = sound;
+	}
+
+	public string Title { get; set; }
+	public string Message { get; set; }
+	public string Icon { get; set; }
+	public string Action { get; set; }
+	public string Tag { get; set; }
+	public string Color { get; set; }
+	public string Sound { get; set; }
+}
+
+public class PushNotificationService {
+	private string _applicationId;
+	private string _senderId;
+	private string _deviceId;
+
+	public PushNotificationService(string applicationId, string senderId, string deviceId) {
+		_applicationId = applicationId;
+		_senderId = senderId;
+		_deviceId = deviceId;
+	}
+
+	public bool Send(PushNotificationModel obj, ref string error = "") {
+		try {
+			if ((string.IsNullOrEmpty(obj.Title))) {
+				error = "\"Title\" is required";
+				return false;
+			}
+
+			if ((string.IsNullOrEmpty(obj.Message))) {
+				error = "\"Message\" is required";
+				return false;
+			}
+
+			if ((string.IsNullOrEmpty(_applicationId) || string.IsNullOrEmpty(_senderId) || string.IsNullOrEmpty(_deviceId))) {
+				error = "All class params are required.";
+				return false;
+			}
+
+			dynamic applicationID = _applicationId;
+			dynamic senderId = _senderId;
+			string deviceId = _deviceId;
+
+			Random rdm = new Random();
+			dynamic data = new {
+				to = deviceId,
+				priority = "high",
+				notification = new {
+					title = obj.Title,
+					body = obj.Message,
+					icon = string.IsNullOrEmpty(obj.Icon) ? "ic_launcher" : obj.Icon,
+					sound = string.IsNullOrEmpty(obj.Sound) ? "default" : obj.Sound,
+					tag = string.IsNullOrEmpty(obj.Tag) ? rdm.Next(111111, 999999).ToString() : obj.Tag,
+					color = string.IsNullOrEmpty(obj.Color) ? "#0086C9" : obj.Color,
+					click_action = string.IsNullOrEmpty(obj.Action) ? "" : obj.Action
+				}
+			};
+
+			dynamic serializer = new JavaScriptSerializer();
+			dynamic json = serializer.Serialize(data);
+			Byte[] byteArray = Encoding.UTF8.GetBytes(json);
+
+			WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
+			tRequest.Method = "POST";
+			tRequest.ContentType = "application/json";
+			tRequest.Headers.Add(HttpRequestHeader.Authorization, "key=" + applicationID);
+			tRequest.Headers.Add("Sender", "id=" + senderId);
+			tRequest.ContentLength = byteArray.Length;
+
+			string str = "";
+			using (Stream dataStream = tRequest.GetRequestStream()) {
+				dataStream.Write(byteArray, 0, byteArray.Length);
+				using (WebResponse tResponse = tRequest.GetResponse()) {
+					using (Stream dataStreamResponse = tResponse.GetResponseStream()) {
+						using (StreamReader tReader = new StreamReader(dataStreamResponse)) {
+							String sResponseFromServer = tReader.ReadToEnd();
+							str = sResponseFromServer;
+						}
+					}
+				}
+			}
+
+			return true;
+		} catch (Exception ex) {
+			error = ex.Message;
+			return false;
+		}
+	}
 }
 ```
