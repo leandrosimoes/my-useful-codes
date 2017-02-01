@@ -256,8 +256,8 @@ End Function
 
 ----------
 
-### Return ModelStateDictionary Errors to
-##### Used to validate CPF (CPF is a personal ID in Brazil).
+### Return ModelStateDictionary Errors to BaseReturnModel
+##### Used to parse the ModelStateDictionary errors to a BaseReturnModel
 
 ```VBNET
 'This is my model that I use to return success or errors
@@ -273,6 +273,11 @@ Public Class BaseReturnModel
     End Property
 
     Public Property errors As New List(Of BaseErrorModel)()
+End Class
+
+'This is the error model
+Public Class BaseErrorModel
+    Public Property Message As String
 End Class
 
 'This function get all ModelStateDictionary errors and put them on my BaseReturnModel
