@@ -468,3 +468,28 @@ function copyToClipboard(contentToCopy) {
     $cliparea.remove();
 }
 ```
+
+-----------
+
+### Check if your server is online
+##### This is just a little trick to check if your server is oline
+```javascript
+function (callbackOnline, callbackOffline) {
+	var img = document.body.appendChild(document.createElement("img"));
+	img.style.display = 'none';
+	img.onload = function() {
+	    if (!!callbackOnline && typeof callbackOnline == 'function') callbackOnline();
+	    
+	    img.parentElement.removeChild(img);
+	};
+	img.onerror = function() {
+	    if (!!callbackOffline && typeof callbackOffline == 'function') callbackOffline();
+	    
+	    img.parentElement.removeChild(img);
+	};
+	
+	//You have to put this image on your server to try to make the download
+	//I suggest you put a very small one, just to check if the download completes or not
+	img.src = "http://localhost:51604/online-check.png?" + new Date().getTime();
+}
+```
