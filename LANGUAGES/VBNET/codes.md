@@ -326,3 +326,23 @@ End Function
 ```
 
 ----------
+
+### Strip invalid chars from string
+##### Sometimes when I parse a text file with UTF8 encoding, some invisible chars are added to parts of string, so I have to do this to avoid this issue
+
+```VBNET
+Private Function CleanString(strIn As String) As String
+    ' Replace invalid characters with empty strings.
+    Try
+       Return Regex.Replace(strIn, "[^\w\.@-]", "")
+    ' If we timeout when replacing invalid characters, 
+    ' we should return String.Empty.
+    Catch e As Exception
+       Return String.Empty         
+    End Try
+End Function
+```
+
+Reference: [#1](https://msdn.microsoft.com/en-us/library/844skk0h%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396)
+
+----------
