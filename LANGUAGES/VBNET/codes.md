@@ -346,3 +346,16 @@ End Function
 Reference: [#1](https://msdn.microsoft.com/en-us/library/844skk0h%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396)
 
 ----------
+
+### Get feed from website feed page
+##### Days ago I have to retrieve some posts from an Wordpress feed, so I did this
+
+```VBNET
+Dim reader As Xml.XmlReader = Xml.XmlReader.Create("http://netspeed.com.br/mais/blog/feed/")
+Dim feed As SyndicationFeed = SyndicationFeed.Load(reader)
+
+'Than just get feed.Items that is an IEnumerable(Of SyndicationItem) and do what you want
+```
+
+----------
+
