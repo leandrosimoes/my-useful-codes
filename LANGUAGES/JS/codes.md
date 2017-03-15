@@ -493,3 +493,108 @@ function (callbackOnline, callbackOffline) {
 	img.src = "http://localhost:51604/online-check.png?" + new Date().getTime();
 }
 ```
+-----------
+
+### Format string with any first letters words to uppercase
+##### I use this function to format strings with all first letter of any word in uppercase.
+
+```javascript
+/*
+Usualy I use this to format names, so if I pass "NEW YORK", 
+the function will return "New York"
+*/
+function anyFirstLetterToUpperCase(str) {
+    if(!str) return '';
+    
+	var parts = str.split(' ');
+	
+	str = '';
+	for(var i in parts) {	
+		var letters = parts[i].split('');
+		
+		str += letters[0].toUpperCase();
+		
+		letters = letters.slice((letters.length - 1) * -1);
+		for(var j in letters) {
+			if(j === 0) continue;
+			
+			str += letters[j].toLowerCase();
+		}
+		
+		str += ' ';
+	}
+	
+	return str.trim();
+};
+```
+
+-----------
+
+### Abreviate person names
+##### I use this function to short some names that I return from a third part api for example
+
+```javascript
+/*
+Enum of short name formats
+	Samples using this name: "LEANDRO SIMÕES DA SILVA"
+*/		
+var shortMethodEnum = {
+	firstOnly: 0, // Leandro
+	lastCommaFirst: 1, // Silva, Leandro
+	firstDotsLast: 2, // Leandro S. D. Silva
+	firstAndLast: 3 // Leandro Silva
+};
+
+/* 	
+Params:
+	name: String of name that you want to get short
+	shorMethod: Use de "shorMethodEnum" above to especify the format of the short name (Default is "firstOnly")
+	namesToExclude: String of names that you want to exclude from the original name before get shorted
+
+Usage: 
+	I have to short the name "Leandro Simões da Silva" and I use this function to get short forms like:
+		"Leandro", "Silva, Leandro", "Leandro S. D. Silva", "Leandro Silva" etc.
+	If I pass "da" in "namesToExclude" param I can get the name like "Leandro S. Silva" for example.
+*/
+function shortName(name, shortMethod, namesToExclude) {
+    if(!name) return '';
+	
+	name = anyFirstLetterToUpperCase(name); // WARNING: Here I'm using the method above
+	
+	if(!!namesToExclude && namesToExclude.length > 0) {
+		for(var i in namesToExclude) {
+			name = name.replace(new RegExp(namesToExclude[i], 'g'), '').replace(/  /g, ' ').trim();
+		}
+	}
+	      
+	var parts = name.split(' '),
+		qtyParts = parts.length;
+		
+	// WARNING: Here I use the enum of short methods above
+	if(!shortMethod || shortMethod === shortMethodEnum.firstOnly) {
+		name = parts[0];
+	} else if(shortMethod === shortMethodEnum.lastCommaFirst) {
+		if(qtyParts >= 2) {
+			name = parts[qtyParts - 1] + ', ' + parts[0];
+		}
+	} else if(shortMethod === shortMethodEnum.firstDotsLast) {
+		if(qtyParts > 1) {
+			name = '';
+			
+			for(i in parts) {
+				if(i > 0 && i < (parts.length - 1)) {
+					name += parts[i].split('')[0] + '. ';
+				} else {
+					name += parts[i] + ' ';
+				}
+			}
+		}
+	} else if(shortMethod === shortMethodEnum.firstAndLast) {			
+		if(qtyParts > 2) {
+			name = parts[0] + ' ' + parts[qtyParts - 1];
+		}
+	}
+	
+	return name.trim();
+};
+```
