@@ -23,10 +23,20 @@ git fsck --full
 ----------
 
 ### Configure GIT proxy
-##### Set up the proxy for GIT
+##### Clear old settings:
+```GIT
+git config --global --unset https.proxy
+git config --global --unset http.proxy
+```
+##### Set new settings:
 ```GIT
 git config --global https.proxy https://USER:PWD@proxy.whatever:80
 git config --global http.proxy http://USER:PWD@proxy.whatever:80
+```
+##### Verify settings:
+```GIT
+git config --get https.proxy
+git config --get http.proxy
 ```
 
 ##### References: [#1](http://stackoverflow.com/a/15647280/1988289)
