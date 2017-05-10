@@ -123,12 +123,15 @@ $.ajax({
 ##### I have used this method to parse a DataTable to any Class type. The Class must have the property names equals to the table columns names.
 
 ```VBNET
-Public Shared Function DataTableToClass(Of T)(ByVal dt As DataTable) As IEnumerable(Of T)
+
+
+    'Usando reflection para transformar as rows de uma DataTable em uma determinada classe
+Public Shared Function DataTableToClass(Of T)(ByVal dt As DataTable, ByVal Optional columnsToExclude() As String = Nothing) As IEnumerable(Of T)
     Dim objType As Type = GetType(T)
     Dim objRetun As New List(Of T)()
 
     If (IsNothing(dt.Rows) OrElse dt.Rows.Count <= 0) Then
-        Return Nothing
+        Return {}
     End If
 
     For Each row As DataRow In dt.Rows
@@ -140,7 +143,27 @@ Public Shared Function DataTableToClass(Of T)(ByVal dt As DataTable) As IEnumera
             Dim prop As PropertyInfo = propInfo.FirstOrDefault(Function(p) p.Name = colName)
 
             If (Not IsNothing(prop)) Then
-                obj.GetType().GetProperty(colName).SetValue(obj, row(colName))
+                If (IsNothing(columnsToExclude) OrElse columnsToExclude.All(Function(e) e <> colName)) Then
+                    Dim propType As Type = obj.GetType().GetProperty(colName).PropertyType
+
+                    If (Not IsNothing(row(colName)) AndAlso Not IsDBNull(row(colName))) Then
+                        If (propType = GetType(Boolean)) Then
+                            Dim value As Boolean = False
+
+                            Try
+                                Dim propValue As String = row(colName).ToString().ToLower()
+                                value = (propValue = "1" OrElse propValue = "true")
+                            Catch ex As Exception
+                                value = False
+                            End Try
+
+                            obj.GetType().GetProperty(colName).SetValue(obj, value, Nothing)
+                        Else
+                            obj.GetType().GetProperty(colName).SetValue(obj, row(colName), Nothing)
+                        End If
+
+                    End If
+                End If
             End If
         Next
 
