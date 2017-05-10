@@ -123,9 +123,6 @@ $.ajax({
 ##### I have used this method to parse a DataTable to any Class type. The Class must have the property names equals to the table columns names.
 
 ```VBNET
-
-
-    'Usando reflection para transformar as rows de uma DataTable em uma determinada classe
 Public Shared Function DataTableToClass(Of T)(ByVal dt As DataTable, ByVal Optional columnsToExclude() As String = Nothing) As IEnumerable(Of T)
     Dim objType As Type = GetType(T)
     Dim objRetun As New List(Of T)()
