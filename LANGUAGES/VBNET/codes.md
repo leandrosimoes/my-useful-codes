@@ -178,42 +178,42 @@ End Function
 
 ```VBNET
 Public Shared Function ClassToDataTable(Of T)(items As List(Of T), ByVal Optional propsToExclude() As String = Nothing) As DataTable
-            Dim dt = New DataTable(GetType(T).Name)
+    Dim dt = New DataTable(GetType(T).Name)
 
-            Dim props As PropertyInfo() = GetType(T).GetProperties()
+    Dim props As PropertyInfo() = GetType(T).GetProperties()
 
-            For Each prop As PropertyInfo In props
-                If (IsNothing(propsToExclude) OrElse propsToExclude.All(Function(p) p <> prop.Name)) Then
-                    Dim type As Type
+    For Each prop As PropertyInfo In props
+        If (IsNothing(propsToExclude) OrElse propsToExclude.All(Function(p) p <> prop.Name)) Then
+            Dim type As Type
 
-                    'DataTable do not accept nullable properties, so if is nullable, create with the real type
-                    If (prop.PropertyType.IsGenericType AndAlso prop.PropertyType.GetGenericTypeDefinition = GetType(System.Nullable(Of ))) Then
-                        type = prop.PropertyType.GetGenericArguments()(0)
-                    Else
-                        type = prop.PropertyType
-                    End If
-
-                    dt.Columns.Add(prop.Name, type)
-                End If
-            Next
-
-            If (Not items.Any()) Then
-                Return dt
+            'DataTable do not accept nullable properties, so if is nullable, create with the real type
+            If (prop.PropertyType.IsGenericType AndAlso prop.PropertyType.GetGenericTypeDefinition = GetType(System.Nullable(Of ))) Then
+                type = prop.PropertyType.GetGenericArguments()(0)
+            Else
+                type = prop.PropertyType
             End If
 
-            For Each item As T In items
-                Dim values = New Object(props.Length - 1) {}
-                For i As Integer = 0 To props.Length - 1
-                    If (IsNothing(propsToExclude) OrElse propsToExclude.All(Function(p) p <> props(i).Name)) Then
-                        values(i) = props(i).GetValue(item, Nothing)
-                    End If
-                Next
+            dt.Columns.Add(prop.Name, type)
+        End If
+    Next
 
-                dt.Rows.Add(values)
-            Next
+    If (Not items.Any()) Then
+        Return dt
+    End If
 
-            Return dt
-        End Function
+    For Each item As T In items
+        Dim values = New Object(props.Length - 1) {}
+        For i As Integer = 0 To props.Length - 1
+            If (IsNothing(propsToExclude) OrElse propsToExclude.All(Function(p) p <> props(i).Name)) Then
+                values(i) = props(i).GetValue(item, Nothing)
+            End If
+        Next
+
+        dt.Rows.Add(values)
+    Next
+
+    Return dt
+End Function
 ```
 
 ----------
