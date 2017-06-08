@@ -424,3 +424,34 @@ Dim feed As SyndicationFeed = SyndicationFeed.Load(reader)
 
 ----------
 
+### Remove special chars from string
+##### Well, this is it
+
+```VBNET
+Public Shared Function RemoveSpecialChars(ByVal text As String) As String
+
+    text = text.Trim()
+    Dim newText As String = ""
+
+    Dim specials = "ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜàáâãäåçèéêëìíîïòóôõöùúûü"
+    Dim noSpecials = "AAAAAACEEEEIIIIOOOOOUUUUaaaaaaceeeeiiiiooooouuuu"
+
+    For Each c In text
+
+        If (specials.Contains(c)) Then
+            c = noSpecials(specials.IndexOf(c))
+        End If
+
+        If ((c >= "0" And c <= "9") Or (c >= "A" And c <= "Z") Or (c >= "a" And c <= "z") Or c = "." Or c = "_" Or c = "@") Then
+            newText = newText & c
+        End If
+
+    Next
+
+    Return newText
+
+End Function
+```
+
+----------
+
