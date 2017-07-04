@@ -474,7 +474,7 @@ function copyToClipboard(contentToCopy) {
 ### Check if your server is online
 ##### This is just a little trick to check if your server is oline
 ```javascript
-function (callbackOnline, callbackOffline) {
+function isServerOnline(callbackOnline, callbackOffline) {
 	var img = document.body.appendChild(document.createElement("img"));
 	img.style.display = 'none';
 	img.onload = function() {
