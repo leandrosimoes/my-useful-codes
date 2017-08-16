@@ -598,3 +598,21 @@ function shortName(name, shortMethod, namesToExclude) {
 	return name.trim();
 };
 ```
+
+-----------
+
+### Get the default language of browser
+##### I use this function to get the browser default language and then can use in localization or something like that
+
+```javascript
+function getDefaultBrowserLanguage() {
+	var returnLanguage = '';
+	if (!!navigator.languages && navigator.languages instanceof Array && navigator.languages.length > 0) {
+		returnLanguage = navigator.languages[0];
+	} else {
+		returnLanguage = navigator.language || navigator.browserLanguage;
+	}
+	
+	return returnLanguage || 'en-US'; // Here you can set any default language if any was found, in my case is 'en-US'
+};
+```
