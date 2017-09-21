@@ -616,3 +616,34 @@ function getDefaultBrowserLanguage() {
 	return returnLanguage || 'en-US'; // Here you can set any default language if any was found, in my case is 'en-US'
 };
 ```
+
+-----------
+
+### Get the used local and session storage used size
+##### I use this function to know how much memory I already used of local and session storage
+
+```javascript
+function getLocalStorageUsedSize() {
+	var total = 0,
+       	    size = 0;
+
+	for (var x in localStorage) {
+		size = ((localStorage[x].length + x.length) * 2);
+		total += size;
+	};
+    
+	return (total / 1024);
+}
+
+function getSessionStorageUsedSize() {
+	var total = 0,
+       	size = 0;
+
+	for (var x in sessionStorage) {
+		size = ((sessionStorage[x].length + x.length) * 2);
+		total += size;
+	};
+    
+	return (total / 1024);
+}
+```
