@@ -647,3 +647,19 @@ function getSessionStorageUsedSize() {
 	return (total / 1024);
 }
 ```
+
+-----------
+
+### Get the default language of browser
+##### I use this function to get the browser default language and then can use in localization or something like that
+
+```javascript
+function isGuid(text) {
+	if(!text) return false;
+	
+	var reg = new RegExp('^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'),
+	    matches = text.match(reg);
+    	
+	return !!matches && matches.length > 0;
+}
+```
