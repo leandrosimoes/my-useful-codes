@@ -650,8 +650,8 @@ function getSessionStorageUsedSize() {
 
 -----------
 
-### Get the default language of browser
-##### I use this function to get the browser default language and then can use in localization or something like that
+### Validate a string GUID
+##### I use this function to validate a string GUID
 
 ```javascript
 function isGuid(text) {
