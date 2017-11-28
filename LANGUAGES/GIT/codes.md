@@ -1,5 +1,3 @@
-<!-- Comment here -->
-
 # **GIT**
 Some GIT useful codes:
 
