@@ -663,3 +663,39 @@ function isGuid(text) {
 	return !!matches && matches.length > 0;
 }
 ```
+
+-----------
+
+### Convert temperature between Fahrenheit and Celsius
+##### I use this function when I need to convert temperatures between Fahrenheit and Celsius
+
+```javascript
+function celciusToFahrenheit(celciusDegrees) {
+    return ((celciusDegrees / (5/9)) +32);
+}
+function fahrenheitToCelcius(fahrenheitDegrees) {
+    return (fahrenheitDegrees - 32) * (5/9);
+}
+```
+
+-----------
+
+### Countdown days
+##### I use this function to count how many days left to a specific date
+
+```javascript
+function daysLeft(date1, date2) {
+    return Math.ceil((date2 - date1) / 1000 / 60 / 60 / 24)
+}
+```
+
+-----------
+
+### Leap year
+##### I use this function to verity if a specific year is a leap year
+
+```javascript
+function isLeapYear(year = new Date().getFullYear()) {
+    return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
+}
+```
