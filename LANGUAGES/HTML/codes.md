@@ -13,3 +13,19 @@ Some HTML useful codes:
 ```
 
 -------
+
+### Default image on error 404
+##### Force a default image when the image uri is not found (Error 404)
+
+```html
+<!-- HTML only solutions (check browser support of object element) -->
+<object data="if-does-not-exist.png" type="image/png">
+  <img src="this-will-be-the-default.png" />
+</object>
+
+<!-- Using a JS inline -->
+<img src="if-does-not-exist.png" alt="" onerror="this.onerror=null;this.src='this-will-be-the-default.png';" />
+
+```
+
+-------
