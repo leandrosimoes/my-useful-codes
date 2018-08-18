@@ -650,8 +650,8 @@ function getSessionStorageUsedSize() {
 
 -----------
 
-### Validate a string GUID
-##### I use this function to validate a string GUID
+### Validate a GUID string
+##### I use this function to validate a GUID string
 
 ```javascript
 function isGuid(text) {
@@ -663,6 +663,24 @@ function isGuid(text) {
 	return !!matches && matches.length > 0;
 }
 ```
+
+-----------
+
+### Generate a GUID string
+##### I use this function to generate GUID string
+
+```javascript
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+```
+
+### References: [#1](https://stackoverflow.com/a/105074/1988289)
 
 -----------
 
