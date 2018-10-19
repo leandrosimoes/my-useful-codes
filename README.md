@@ -10,6 +10,7 @@ Just a repo to store some codes that (somehow) are useful to me.
 * [JS](https://github.com/leandrosimoes/my-useful-codes/tree/master/LANGUAGES/JS/codes.md)
 * [GIT](https://github.com/leandrosimoes/my-useful-codes/tree/master/LANGUAGES/GIT/codes.md)
 * [SQL](https://github.com/leandrosimoes/my-useful-codes/tree/master/LANGUAGES/SQL/codes.md)
+* [BASH](https://github.com/leandrosimoes/my-useful-codes/tree/master/LANGUAGES/BASH/codes.md)
 
 ## Sugestions, fixes or improvements?
 Just open a pull request or mail me: [leandro.simoes@outlook.com](mailto:leandro.simoes@outlook.com)
