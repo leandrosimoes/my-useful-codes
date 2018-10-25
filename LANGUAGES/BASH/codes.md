@@ -20,3 +20,23 @@ if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
 
 fi
 ```
+
+Some BASH useful codes/scripts:
+
+### Save aliases to a file and reuse
+##### I just add a function to my ./bash_profile called `addalias` to ease add aliases to a file and reuse them before
+
+```BASH
+#!/bin/bash
+
+# Create a function to ease add aliases to a file
+# In my case I'm saving a .bash_aliases file in my Google Drive folder because
+# everytime that I change it, it will be automatically uploaded to my Google Drive
+function addalias { 
+	echo "alias $1=\"$2\"">>~/Google\ Drive/.bash_aliases && source ~/Google\ Drive/.bash_aliases
+}
+
+# Then here I load the .bash_aliases file from my Google Drive directory
+# everytime that you open bash
+source ~/Google\ Drive/.bash_aliases
+```
