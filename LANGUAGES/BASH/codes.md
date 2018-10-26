@@ -21,20 +21,36 @@ if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
 fi
 ```
 
-### Save aliases to a file and reuse
-##### I just add a function to my ./bash_profile called `addalias` to ease add aliases to a file and reuse them before
+### Persist aliases
+##### I use this script inside my .bash_profile to persist my aliases everytime that I open bash
 
 ```BASH
 #!/bin/bash
 
-# Create a function to ease add aliases to a file
+mkdir -p ~/Google\ Drive/
+mkdir -p ~/tmp/
+touch ~/tmp/aliases_path.dat
+echo ~/Google\ Drive/.bash_aliases>~/tmp/aliases_path.dat
+
+# Create a function to easy add aliases to a file
 # In my case I'm saving a .bash_aliases file in my Google Drive folder because
 # everytime that I change it, it will be automatically uploaded to my Google Drive
-function addalias { 
-	echo "alias $1=\"$2\"">>~/Google\ Drive/.bash_aliases && source ~/Google\ Drive/.bash_aliases
+function addalias {
+	aliases_path=`cat ~/tmp/aliases_path.dat`
+	echo "alias $1=\"$2\"">>"$aliases_path" && source "$aliases_path"
+}
+
+# Create a function to easy remove aliases from a file
+# In my case I'm saving a .bash_aliases file in my Google Drive folder because
+# everytime that I change it, it will be automatically uploaded to my Google Drive
+function removealias {
+	aliases_path=`cat ~/tmp/aliases_path.dat`
+	sed -i "/alias $1\=/d" "$aliases_path"
+	unalias "$1"
 }
 
 # Then here I load the .bash_aliases file from my Google Drive directory
 # everytime that you open bash
-source ~/Google\ Drive/.bash_aliases
+aliases_path=`cat ~/tmp/aliases_path.dat`
+source "$aliases_path"
 ```
