@@ -27,9 +27,17 @@ fi
 ```BASH
 #!/bin/bash
 
+# If doesn't exist, create a Google Drive directory in case I didn't install it
 mkdir -p ~/Google\ Drive/
+
+# If doesn't exist, create a tmp directorythat will store my aliases file path
 mkdir -p ~/tmp/
+
+# Create a aliases_path.dat file if doesn't exist
 touch ~/tmp/aliases_path.dat
+
+# Store the path of my .bash_aliases file in my /tmp/aliases_path.dat file
+# to be readed and reused after in my functions
 echo ~/Google\ Drive/.bash_aliases>~/tmp/aliases_path.dat
 
 # Create a function to easy add aliases to a file
