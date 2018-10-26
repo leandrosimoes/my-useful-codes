@@ -14,8 +14,8 @@ if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
   
   # if we can't find an agent, start one, and restart the script.
   if [ -z "$SSH_AUTH_SOCK" ] ; then
-      exec ssh-agent bash -c "ssh-add ; $0"
-      exit
+	  eval `ssh-agent -s`
+	  ssh-add
   fi
 
 fi
