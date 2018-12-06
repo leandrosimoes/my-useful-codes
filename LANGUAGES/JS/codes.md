@@ -628,7 +628,7 @@ function getLocalStorageUsedSize() {
        	    size = 0;
 
 	for (var x in localStorage) {
-		size = ((localStorage[x].length + x.length) * 2);
+		size = (((localStorage[x].length || 0) + x.length) * 2);
 		total += size;
 	};
     
@@ -640,7 +640,7 @@ function getSessionStorageUsedSize() {
        	size = 0;
 
 	for (var x in sessionStorage) {
-		size = ((sessionStorage[x].length + x.length) * 2);
+		size = (((sessionStorage[x].length || 0) + x.length) * 2);
 		total += size;
 	};
     
