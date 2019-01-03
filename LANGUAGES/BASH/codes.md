@@ -21,6 +21,8 @@ if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
 fi
 ```
 
+---
+
 ### Persist aliases
 ##### I use this script inside my .bash_profile to persist my aliases everytime that I open bash
 
@@ -63,6 +65,8 @@ aliases_path=`cat ~/tmp/aliases_path.dat`
 source "$aliases_path"
 ```
 
+---
+
 ### Do a fast commit
 ##### Just a simple sintax sugar to execute git add, commit and push at once
 
@@ -72,6 +76,101 @@ function fastpush {
 		eval "git add . && git commit -m \"$1\" && git push"
 	else
 		echo "You need to provide a commit message!"
+	fi
+}
+```
+
+---
+
+### Fetch all repositories in the current path
+##### I use this function to get all the repositories that exists inside the current path and fetch them all
+
+```BASH
+function fetchall() {
+	echo ""
+	nogitdirs=1
+	for i in * ; do
+		if [ -d "$i" ] ; then
+			cd "$i"
+			if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+				nogitdirs=0
+				current_branch=$(git branch | grep \* | cut -d ' ' -f2 2>&1)
+				
+				if [ ! -z "$current_branch" ]; then
+					
+					echo -e "\e[94mFetching $i ($current_branch) ..."
+					git fetch
+					echo -e "\e[94mFetching $i ($current_branch) done"
+					echo ""
+						
+				else
+					
+					echo -e "\e[94m$i \e[93m! Not a git repository or do not has a upstream set"
+					
+				fi
+			fi
+			cd ..
+		fi
+	done
+	
+	if [ "$nogitdirs" -gt 0 ] ; then
+		echo -e "\e[91mNo git directories found"
+	fi
+}
+```
+
+---
+
+### Check if there is changes to commit, push or pull
+##### This function show if there is local or remote changes in all repositories inside the current path
+
+```BASH
+function statusall() {
+	echo ""
+	nogitdirs=1
+	for i in * ; do
+		if [ -d "$i" ] ; then
+			cd "$i"
+			if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+				nogitdirs=0
+				changestoupmessage=""
+				changestodownmessage=""
+				current_branch=$(git branch | grep \* | cut -d ' ' -f2 2>&1)
+				
+				if [ ! -z "$current_branch" ]; then
+					
+					if [ -n "$(git diff --exit-code)" ]; then
+						changestoupmessage="\e[93m> Changes to commit";
+					elif [ -n "$(git diff --cached --exit-code)" ] ; then
+						changestoupmessage="\e[93m> Stagged changes to commit";
+					elif [ -n "$(git diff --exit-code origin/$current_branch $current_branch)" ]; then
+						changestoupmessage="\e[93m> Commited changes to push"
+					else
+						changestoupmessage="\e[32m- No local changes";
+					fi
+					
+					if [ -z "$current_branch" ]; then
+						changestodownmessage=""
+					elif [ -n "$(git remote show origin | grep "pushes to develop" | grep "local out of date")" ]; then
+						changestodownmessage="\e[93m< You have changes to pull"
+					else
+						changestodownmessage="\e[32m- No remote changes"
+					fi
+					
+					echo -e "\e[94m$i ($current_branch) $changestoupmessage $changestodownmessage"
+					
+				else
+					
+					echo -e "\e[94m$i \e[93m! Is not a git project or do not has a upstream set"
+					
+				fi
+			fi
+			cd ..
+		fi
+	done
+	
+	if [ "$nogitdirs" -gt 0 ] ; then
+		echo -e "\e[91mNo git directories found"
 	fi
 }
 ```
