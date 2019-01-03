@@ -62,3 +62,16 @@ function removealias {
 aliases_path=`cat ~/tmp/aliases_path.dat`
 source "$aliases_path"
 ```
+
+### Do a fast commit
+##### Just a simple sintax sugar to execute git add, commit and push at once
+
+```BASH
+function fastpush {
+	if [ ! -z "$1" ]; then
+		eval "git add . && git commit -m \"$1\" && git push"
+	else
+		echo "You need to provide a commit message!"
+	fi
+}
+```
