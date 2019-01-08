@@ -52,3 +52,13 @@ git config --global --add diff.guitool kdiff3
 git config --global --add difftool.kdiff3.path "C:/Program Files/KDiff3/kdiff3.exe"
 git config --global --add difftool.kdiff3.trustExitCode false
 ```
+----------
+
+### Remove git pager for every command
+```BASH
+git config --global core.pager cat
+```
+
+##### References: [#1](https://stackoverflow.com/questions/2183900/how-do-i-prevent-git-diff-from-using-a-pager/14118014#14118014)
+
+----------
