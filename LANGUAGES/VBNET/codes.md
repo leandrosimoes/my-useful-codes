@@ -1,6 +1,21 @@
 ﻿# **VB.NET**
 Some VB.NET useful codes:
 
+## Summary
+
+* [HTTL Listener Sample](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/VBNET/codes.md#httplistener-sample)
+* [DataTable To Class](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/VBNET/codes.md#datatable-to-class)
+* [Class To Datatable](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/VBNET/codes.md#class-to-datatable)
+* [Validate CPF](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/VBNET/codes.md#validate-cpf)
+* [Validate CNPJ](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/VBNET/codes.md#validate-cnpj)
+* [ModelStateDictionay To BaseReturnModel](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/VBNET/codes.md#return-modelstatedictionary-errors-to-basereturnmodel)
+* [NameValueCollection To Query String](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/VBNET/codes.md#namevaluecollection-to-query-string)
+* [Strip Invalid Chars From String](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/VBNET/codes.md#strip-invalid-chars-from-string)
+* [Get Feed From A Website Feed Page](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/VBNET/codes.md#get-feed-from-website-feed-page)
+* [Remove Special Chars From String](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/VBNET/codes.md#remove-special-chars-from-string)
+
+----------
+
 ### HttpListener sample
 ##### I have used this code to start a localhost server listener to be able to open a desktop application by browser
 

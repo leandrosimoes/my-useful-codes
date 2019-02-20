@@ -1,6 +1,16 @@
 # **GIT**
 Some GIT useful codes:
 
+## Summary
+
+* [Fix Untracked Files](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#fix-untracked-files)
+* [Fix Corrupted Header](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#fix-corrupted-header)
+* [Configure Git Proxy](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#configure-git-proxy)
+* [Configure Kdiff3 As Default Diff Tool](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#configure-kdiff3-as-default-diff-tools-for-git)
+* [Remove Git Pager For Every Command](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#remove-git-pager-for-every-command)
+
+----------
+
 ### Fix untracked files
 ##### Sometimes you put some things on .gitignore but you realise that git do not ignore them, so this fix it.
 ```BASH

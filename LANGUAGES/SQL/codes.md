@@ -1,6 +1,12 @@
 ﻿# **SQL**
 Some SQL useful codes:
 
+## Summary
+
+* [Return A Full Table String In A C# Class Format](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/SQL/codes.md#return-a-full-table-string-in-a-c-class-format)
+
+-----------
+
 ### Return a full table string in a C# Class format
 ##### This query returns a string formated like a C# Class. I will use this in project soon ;)
 

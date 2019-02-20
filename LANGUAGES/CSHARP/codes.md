@@ -1,6 +1,24 @@
 ﻿# **C#**
 Some C# useful codes:
 
+## Summary
+
+* [Copy Directories Recursively](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#copy-directory-recursively)
+* [Open In Default Browser](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#open-in-default-browser)
+* [Force Form Focus](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#force-form-focus)
+* [Set Start Your Application With Windows Startup](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#set-start-of-your-application-with-windows-startup)
+* [Keyboard Delay](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#keyboard-delay)
+* [Drag Form](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#drag-form)
+* [Repositioning Text Cursor](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#repositioning-text-cursor)
+* [Create A Context Menu For Your App](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#creating-a-context-menu-for-you-app)
+* [Create A System Tray Icon](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#creating-a-system-tray-icon)
+* [Verify Write Permissions On File Or Directory](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#verify-write-permissions-on-file-or-directory)
+* [Get Default Browser Icon](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#get-default-browser-icon)
+* [Verify URL](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#verify-url)
+* [Send Push Notification By Google Firebase](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/CSHARP/codes.md#send-push-notifications-by-google-firebase)
+
+----------
+
 ### Copy directory recursively
 ##### With this code you can copy directory recursively copying all your files and subdirectories
 

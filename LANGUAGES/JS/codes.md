@@ -1,6 +1,40 @@
 ﻿# **JS**
 Some JS useful codes:
 
+## Summary 
+
+* [Order an array of objects by another array of values and property name](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#order-an-array-of-objects-by-another-array-of-values-and-property-name)
+* [Verify Youtube URL](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#verify-youtube-url)
+* [Get Youtube Video ID](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#get-youtube-video-id)
+* [Get Youtube Video Thumbnail](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#get-youtube-video-thumbnail)
+* [Append Youtube IFrame](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#append-youtube-iframe)
+* [Verify Vimeo URL](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#verify-vimeo-url)
+* [Get Vimeo Video ID](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#get-vimeo-video-id)
+* [Get Vimeo Video Data](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#get-vimeo-video-data)
+* [Append Vimeo IFrame](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#append-vimeo-iframe)
+* [Create Blob From Base64 String](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#create-a-blob-from-base64-string)
+* [Create thumbnail BLOB from HTML5 video tag (Needs JQuery)](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#create-thumbnail-blob-from-html5-video-tag-needs-jquery)
+* [String format like .NET String.Format](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#string-format-like-net-stringformat)
+* [JSON To URI Encoded Params](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#json-object-to-uri-encoded-params)
+* [Vanilla Function To Extend Objects](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#vanilla-function-to-extend-objects)
+* [Parsing HTML String With Pure Vanilla JS](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#parsing-html-string-with-pure-vanilla-js)
+* [Copy To Clipboard](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#copy-to-clipboard-needs-jquery)
+* [Check If Your Server Is Online](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#check-if-your-server-is-online)
+* [Format string with any first letters words to uppercase](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#format-string-with-any-first-letters-words-to-uppercase)
+* [Abreviate person names](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#abreviate-person-names)
+* [Get Default Language Of The Browser](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#get-the-default-language-of-browser)
+* [Get the used local and session storage used size](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#get-the-used-local-and-session-storage-used-size)
+* [Validate A GUID String](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#validate-a-guid-string)
+* [Generate A GUID String](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#generate-a-guid-string)
+* [Convert Temperature Between Fahrenheit and Celsius](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#convert-temperature-between-fahrenheit-and-celsius)
+* [Countdown Days](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#countdown-days)
+* [Leap Year](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#leap-year)
+* [RGB To HEX](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#rgb-2-hex)
+* [Async ForEach](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#async-for-each)
+* [Sum Very Large Numbers](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#sum-very-large-numbers)
+
+----------
+
 ### Order an array of objects by another array of values and property name
 ##### I used this code when I needed to order an array passing another array with the same properties but in some order
 
@@ -755,3 +789,37 @@ await asyncForEach(YOUR_ARRAY, async array_item => {
 	...
 })
 ```
+
+----------
+
+### Sum Very Large Numbers
+##### Some day in a galaxy far far away I have to sum numbers like '9879798798796531326849879765312165498794' and javascript do not support BigInt yet, so...
+
+```javascript
+const sumLargeNumbers = (a, b) => {
+	if (a.length > b.length) b = b.padStart(a.length, '0')
+	else if (b.length > a.length) a = a.padStart(b.length, '0')
+
+	const digitsA = a.split('')
+	const digitsB = b.split('')
+
+	let rest = 0
+	let total = ''
+	let length = digitsA.length
+	for (let i = length - 1; i >= 0; i--) {
+		const x = parseInt(digitsA[i])
+		const y = parseInt(digitsB[i])
+		const result = (x + y + rest).toString()
+
+		rest = result.length > 1 ? parseInt(result.split('')[0]) : 0
+		total += result.length > 1 ? result.split('')[1] : result
+	}
+
+	total += rest
+	total = total.split('').reverse().join('')
+
+	return total.replace(/^0+/, '')
+}
+```
+
+----------

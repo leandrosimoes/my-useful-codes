@@ -1,6 +1,16 @@
 # **BASH**
 Some BASH useful codes/scripts:
 
+## Summary
+
+* [Ask For Passphrase When Open The BASH](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/BASH/codes.md#ask-for-passphrase-when-open-the-bash)
+* [Persist Aliases](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/BASH/codes.md#persist-aliases)
+* [Do A Fast Commit](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/BASH/codes.md#do-a-fast-commit)
+* [Fetch All Repositories In The Current Path](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/BASH/codes.md#fetch-all-repositories-in-the-current-path)
+* [Check if there is changes to commit, push or pull](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/BASH/codes.md#check-if-there-is-changes-to-commit-push-or-pull)
+
+----------
+
 ### Ask for passphrase when open the BASH
 ##### When you are using GIT with a private ssh key you will have to start the user agent, open the ssh key in agent and then type the passphrase. After a few close/open BASH, this will be very anoying! So I create this script to get over the first two steps and jump right to the step that you have to type the passphrase.
 ```BASH
