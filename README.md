@@ -77,6 +77,8 @@ Just a repo to store some codes that (somehow) are useful to me.
   - [Do A Fast Commit](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/BASH/codes.md#do-a-fast-commit)
   - [Fetch All Repositories In The Current Path](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/BASH/codes.md#fetch-all-repositories-in-the-current-path)
   - [Check if there is changes to commit, push or pull](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/BASH/codes.md#check-if-there-is-changes-to-commit-push-or-pull)
+* [REACT]
+  - [Make react accept JSX extensions](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/REACT/codes.md#make-react-accept-jsx-extensions)
 
 ## Sugestions, fixes or improvements?
 Just open a pull request or mail me: [leandro.simoes@outlook.com](mailto:leandro.simoes@outlook.com)
