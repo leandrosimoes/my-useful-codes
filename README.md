@@ -69,6 +69,8 @@ Just a repo to store some codes that (somehow) are useful to me.
   - [Configure Git Proxy](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#configure-git-proxy)
   - [Configure Kdiff3 As Default Diff Tool](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#configure-kdiff3-as-default-diff-tools-for-git)
   - [Remove Git Pager For Every Command](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#remove-git-pager-for-every-command)
+  - [Change Project Origin URL](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#change-project-origin-url)
+  - [Check Project Origin URL](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#check-project-origin-url)
 * [SQL](https://github.com/leandrosimoes/my-useful-codes/tree/master/LANGUAGES/SQL/codes.md)
   - [Return A Full Table String In A C# Class Format](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/SQL/codes.md#return-a-full-table-string-in-a-c-class-format)
 * [BASH](https://github.com/leandrosimoes/my-useful-codes/tree/master/LANGUAGES/BASH/codes.md)
