@@ -8,6 +8,8 @@ Some GIT useful codes:
 * [Configure Git Proxy](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#configure-git-proxy)
 * [Configure Kdiff3 As Default Diff Tool](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#configure-kdiff3-as-default-diff-tools-for-git)
 * [Remove Git Pager For Every Command](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#remove-git-pager-for-every-command)
+* [Change Project Origin URL](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#change-project-origin-url)
+* [Check Project Origin URL](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#check-project-origin-url)
 
 ----------
 
@@ -70,5 +72,19 @@ git config --global core.pager cat
 ```
 
 ##### References: [#1](https://stackoverflow.com/questions/2183900/how-do-i-prevent-git-diff-from-using-a-pager/14118014#14118014)
+
+----------
+
+### Change project origin URL
+```BASH
+git remote set-url origin 'YOUR NEW URL'
+```
+
+----------
+
+### Check project origin URL
+```BASH
+git remote -v
+```
 
 ----------
