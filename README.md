@@ -81,6 +81,7 @@ Just a repo to store some codes that (somehow) are useful to me.
   - [Check if there is changes to commit, push or pull](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/BASH/codes.md#check-if-there-is-changes-to-commit-push-or-pull)
 * [REACT](https://github.com/leandrosimoes/my-useful-codes/tree/master/LANGUAGES/REACT/codes.md)
   - [Make react accept JSX extensions](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/REACT/codes.md#make-react-accept-jsx-extensions)
+  - [Bundle Android App Without Device](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/REACT/codes.md#bundle-android-app-without-device)
 
 ## Sugestions, fixes or improvements?
 Just open a pull request or mail me: [leandro.simoes@outlook.com](mailto:leandro.simoes@outlook.com)
