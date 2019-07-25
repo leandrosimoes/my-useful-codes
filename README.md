@@ -52,7 +52,7 @@ Just a repo to store some codes that (somehow) are useful to me.
   - [Copy To Clipboard](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#copy-to-clipboard-needs-jquery)
   - [Check If Your Server Is Online](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#check-if-your-server-is-online)
   - [Format string with any first letters words to uppercase](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#format-string-with-any-first-letters-words-to-uppercase)
-  - [Abreviate person names](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#abreviate-person-names)
+  - [Abbreviate person names](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#abbreviate-person-names)
   - [Get Default Language Of The Browser](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#get-the-default-language-of-browser)
   - [Get the used local and session storage used size](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#get-the-used-local-and-session-storage-used-size)
   - [Validate A GUID String](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/JS/codes.md#validate-a-guid-string)
