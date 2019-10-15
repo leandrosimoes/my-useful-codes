@@ -73,6 +73,7 @@ Just a repo to store some codes that (somehow) are useful to me.
   - [Check Project Origin URL](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/GIT/codes.md#check-project-origin-url)
 * [SQL](https://github.com/leandrosimoes/my-useful-codes/tree/master/LANGUAGES/SQL/codes.md)
   - [Return A Full Table String In A C# Class Format](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/SQL/codes.md#return-a-full-table-string-in-a-c-class-format)
+  - [Return A Full Table String In A VB.Net Class Format](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/SQL/codes.md#return-a-full-table-string-in-a-vbnet-class-format)
 * [BASH](https://github.com/leandrosimoes/my-useful-codes/tree/master/LANGUAGES/BASH/codes.md)
   - [Ask For Passphrase When Open The BASH](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/BASH/codes.md#ask-for-passphrase-when-open-the-bash)
   - [Persist Aliases](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/BASH/codes.md#persist-aliases)
