@@ -4,7 +4,7 @@ Some SQL useful codes:
 ## Summary
 
 * [Return A Full Table String In A C# Class Format](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/SQL/codes.md#return-a-full-table-string-in-a-c-class-format)
-* [Return A Full Table String In A VB.Net Class Format](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/SQL/codes.md#return-a-full-table-string-in-a-vb-net-class-format)
+* [Return A Full Table String In A VB.Net Class Format](https://github.com/leandrosimoes/my-useful-codes/blob/master/LANGUAGES/SQL/codes.md#return-a-full-table-string-in-a-vbnet-class-format)
 
 -----------
 
