@@ -83,7 +83,7 @@ print @Result
 ```SQL
 declare @TableName sysname = 'TableName'
 declare @Result varchar(max) = 'Public Class ' + @TableName + '
-{'
+'
 
 select @Result = @Result + '
     Public Property ' + ColumnName + ' As ' + ColumnType + NullableSign + '
@@ -137,7 +137,7 @@ from
 order by ColumnId
 
 set @Result = @Result  + '
-}'
+End Class'
 
 print @Result
 ```
