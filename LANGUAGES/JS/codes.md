@@ -689,12 +689,11 @@ function getSessionStorageUsedSize() {
 
 ```javascript
 function isGuid(text) {
-	if(!text) return false;
+    if(!text) return false;
 	
-	var reg = new RegExp('^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'),
-	    matches = text.match(reg);
+    const reg = new RegExp('^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$')
     	
-	return !!matches && matches.length > 0;
+    return text.match(reg)?.length > 0;
 }
 ```
 
@@ -705,12 +704,24 @@ function isGuid(text) {
 
 ```javascript
 function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+
+    function generate() {
+        return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`
+    }
+
+    let result = ''
+    
+    // Here I'm using the function isGuid mentioned above in this file
+    while(!isGuid(result)) {
+        result = generate()
+    }
+    
+    return result
 }
 ```
 
